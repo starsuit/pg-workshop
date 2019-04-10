@@ -2,17 +2,20 @@ const {
   homeHandler,
   getUsersHandler,
   publicHandler,
-  errorHandler
-} = require('./handlers');
+  errorHandler,
+  newUserHandler
+} = require("./handlers");
 
 const router = (request, response) => {
   const { url } = request;
 
-  if (url === '/') {
+  if (url === "/") {
     homeHandler(response);
-  } else if (url === '/users') {
+  } else if (url === "/users") {
     getUsersHandler(response);
-  } else if (url.includes('public')) {
+  } else if (url === "/create-user") {
+    newUserHandler(request, response);
+  } else if (url.includes("public")) {
     publicHandler(url, response);
   } else {
     errorHandler(response);
